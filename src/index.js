@@ -202,8 +202,8 @@ class SimpleImage {
    */
   save(blockContent) {
     let image = blockContent.querySelector("img"),
-      caption = blockContent.querySelector("." + this.CSS.input);
-    alt = blockContent.querySelector("." + this.CSS.input);
+      caption = blockContent.querySelector("." + this.CSS.input),
+      alt = blockContent.querySelector("." + this.CSS.input);
 
     if (!image) {
       return this.data;
