@@ -127,7 +127,7 @@ class SimpleImage {
       caption = this._make('div', [this.CSS.input, this.CSS.caption], {
         contentEditable: 'true',
         innerHTML: this.data.caption || ''
-      });
+      }),
       alt = this._make('div', [this.CSS.input, this.CSS.alt], {
         contentEditable: 'true',
         innerHTML: this.data.alt || ''
