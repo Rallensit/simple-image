@@ -11,6 +11,7 @@ require('./index.css').toString();
  * @description Tool's input and output data format
  * @property {string} url — image URL
  * @property {string} caption — image caption
+ * @property {string} alt - image alt
  * @property {boolean} withBorder - should image be rendered with border
  * @property {boolean} withBackground - should image be rendered with background
  * @property {boolean} stretched - should image be stretched to full width of container
@@ -54,7 +55,8 @@ class SimpleImage {
        */
       wrapper: 'cdx-simple-image',
       imageHolder: 'cdx-simple-image__picture',
-      caption: 'cdx-simple-image__caption'
+      caption: 'cdx-simple-image__caption',
+      alt: 'cdx-simple-image__alt'
     };
 
     /**
@@ -64,7 +66,8 @@ class SimpleImage {
       wrapper: null,
       imageHolder: null,
       image: null,
-      caption: null
+      caption: null,
+      alt: null
     };
 
     /**
@@ -73,6 +76,7 @@ class SimpleImage {
     this.data = {
       url: data.url || '',
       caption: data.caption || '',
+      alt: data.alt || '',
       withBorder: data.withBorder !== undefined ? data.withBorder : false,
       withBackground: data.withBackground !== undefined ? data.withBackground : false,
       stretched: data.stretched !== undefined ? data.stretched : false,
@@ -109,7 +113,7 @@ class SimpleImage {
    *  0) Show a button if there is no image
    *  1) Show preloader
    *  2) Start to load an image
-   *  3) After loading, append image and caption input
+   *  3) After loading, append image, caption and alt input
    * @public
    */
   render() {
@@ -124,21 +128,28 @@ class SimpleImage {
         contentEditable: 'true',
         innerHTML: this.data.caption || ''
       });
+      alt = this._make('div', [this.CSS.input, this.CSS.alt], {
+        contentEditable: 'true',
+        innerHTML: this.data.alt || ''
+      });
 
     this.nodes.imageHolder = imageHolder;
     this.nodes.wrapper = wrapper;
     this.nodes.image = image;
     this.nodes.caption = caption;
+    this.nodes.alt = alt;
     this.nodes.loader = loader;
     this.nodes.loadButton = loadButton;
 
     caption.dataset.placeholder = 'Enter a caption';
+    alt.dataset.placeholder = 'Enter a alternative text';
 
     image.onload = () => {
       wrapper.classList.remove(this.CSS.loading);
       imageHolder.appendChild(image);
       wrapper.appendChild(imageHolder);
       wrapper.appendChild(caption);
+      wrapper.appendChild(alt);
       loader.remove();
 
       if (loadButton !== null) {
@@ -167,7 +178,8 @@ class SimpleImage {
         
         this.data = {
           url: url,
-          caption: file.name
+          caption: file.name,
+          alt: file.name
         };
       
         loadButton.remove();
@@ -187,6 +199,7 @@ class SimpleImage {
   save(blockContent) {
     let image = blockContent.querySelector('img'),
       caption = blockContent.querySelector('.' + this.CSS.input);
+      alt = blockContent.querySelector('.' + this.CSS.input);
 
     if (!image) {
       return this.data;
@@ -194,7 +207,8 @@ class SimpleImage {
 
     return Object.assign(this.data, {
       url: image.src,
-      caption: caption.innerHTML
+      caption: caption.innerHTML,
+      alt: alt.innerHTML
     });
   }
 
@@ -210,6 +224,9 @@ class SimpleImage {
       caption: {
         br: true,
       },
+      alt:{
+        br: true,
+      }
     };
   }
 
@@ -241,7 +258,8 @@ class SimpleImage {
         const { file } = event.detail;
         this.data = {
           url: URL.createObjectURL(file),
-          caption: file.name
+          caption: file.name,
+          alt: file.name
         };
         break;
     }
@@ -272,6 +290,10 @@ class SimpleImage {
 
     if (this.nodes.caption) {
       this.nodes.caption.innerHTML = this.data.caption;
+    }
+
+    if (this.nodes.alt) {
+      this.nodes.alt.innerHTML = this.data.alt;
     }
   }
 
