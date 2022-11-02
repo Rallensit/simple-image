@@ -32,6 +32,7 @@ class SimpleImage {
      * Editor.js API
      */
     this.api = api;
+    this.readOnly = readOnly;
 
     /**
      * When block is only constructing,
