@@ -150,6 +150,7 @@ class SimpleImage {
 
     image.onload = () => {
       wrapper.classList.remove(this.CSS.loading);
+      image.setAttribute("alt", alt);
       imageHolder.appendChild(image);
       wrapper.appendChild(imageHolder);
       wrapper.appendChild(caption);
