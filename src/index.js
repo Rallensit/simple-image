@@ -154,7 +154,9 @@ class SimpleImage {
       imageHolder.appendChild(image);
       wrapper.appendChild(imageHolder);
       wrapper.appendChild(caption);
-      wrapper.appendChild(alt);
+      if ((this.readOnly = false)) {
+        wrapper.appendChild(alt);
+      }
       loader.remove();
 
       if (loadButton !== null) {
