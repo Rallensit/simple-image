@@ -155,11 +155,12 @@ class SimpleImage {
       wrapper.appendChild(imageHolder);
       wrapper.appendChild(caption);
 
-      if (!this.readOnly) {
-        wrapper.appendChild(alt);
-        console.log(this.readOnly);
-        console.log("********");
-      }
+      //peta al cambiar a escritura de nuevo
+      // if (!this.readOnly) {
+      //   wrapper.appendChild(alt);
+      //   console.log("********");
+      // }
+      this.readOnly ? console.log("modo lectura") : wrapper.appendChild(alt);
 
       loader.remove();
 
