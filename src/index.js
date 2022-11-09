@@ -156,11 +156,13 @@ class SimpleImage {
       wrapper.appendChild(caption);
 
       //peta al cambiar a escritura de nuevo
-      // if (!this.readOnly) {
-      //   wrapper.appendChild(alt);
-      //   console.log("********");
-      // }
-      this.readOnly ? console.log("modo lectura") : wrapper.appendChild(alt);
+      if (this.readOnly) {
+        alt.setAttribute("style", "display:none;");
+      } else {
+        alt.setAttribute("style", "display:block;");
+      }
+      wrapper.appendChild(alt);
+      // this.readOnly ? console.log("modo lectura") : wrapper.appendChild(alt);
 
       loader.remove();
 
