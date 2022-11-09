@@ -59,6 +59,8 @@ var editor = EditorJS({
 });
 ```
 
+#NOTE: When the editor is on read only mode the alt input is hidden
+
 ## Config Params
 
 This Tool has no config params
@@ -79,6 +81,7 @@ This Tool has no config params
 | -------------- | --------- | ------------------------------- |
 | url            | `string`  | image's url                     |
 | caption        | `string`  | image's caption                 |
+| alt            | `string`  | image's alt                     |
 | withBorder     | `boolean` | add border to image             |
 | withBackground | `boolean` | need to add background          |
 | stretched      | `boolean` | stretch image to screen's width |
@@ -90,6 +93,7 @@ This Tool has no config params
     "data" : {
         "url" : "https://www.tesla.com/tesla_theme/assets/img/_vehicle_redesign/roadster_and_semi/roadster/hero.jpg",
         "caption" : "Roadster // tesla.com",
+        "alt" : "alternative text",
         "withBorder" : false,
         "withBackground" : false,
         "stretched" : true
