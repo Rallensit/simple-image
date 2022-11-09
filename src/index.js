@@ -154,10 +154,15 @@ class SimpleImage {
       imageHolder.appendChild(image);
       wrapper.appendChild(imageHolder);
       wrapper.appendChild(caption);
-      wrapper.appendChild(alt);
-      console.log('*************');
-      console.log(this.readOnly);
-      console.log('*************');
+
+      if (!this.readOnly) {
+        console.log(this.readOnly);
+        console.log('********');
+      }
+      this.readOnly
+        ? console.log("Modo solo lectura")
+        : wrapper.appendChild(alt);
+
       loader.remove();
 
       if (loadButton !== null) {
