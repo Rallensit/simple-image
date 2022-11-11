@@ -155,14 +155,13 @@ class SimpleImage {
       wrapper.appendChild(imageHolder);
       wrapper.appendChild(caption);
 
-      //peta al cambiar a escritura de nuevo
+      // If the Editor is on ReadOnly the alt input is not displayed
       if (this.readOnly) {
         alt.setAttribute("style", "display:none;");
       } else {
         alt.setAttribute("style", "display:block;");
       }
       wrapper.appendChild(alt);
-      // this.readOnly ? console.log("modo lectura") : wrapper.appendChild(alt);
 
       loader.remove();
 

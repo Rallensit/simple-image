@@ -1,5 +1,6 @@
 Note: This is a fork of the SimpleImage repository. It adds in extra functionality such as a toolbar to add images (rather than just drag and drop) and uses blob URL's
 to improve memory usage.
+Note: Now includes alt input for the image when its not on readOnly mode, default will be the name of the image.
 
 # Simple Image Tool
 
